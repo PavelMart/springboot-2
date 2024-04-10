@@ -1,8 +1,11 @@
 package ru.netology.auth.controller;
 
+import jakarta.validation.Valid;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import ru.netology.auth.model.AuthUser;
+import ru.netology.auth.model.User;
 import ru.netology.auth.repository.Authorities;
 import ru.netology.auth.service.AuthService;
 
@@ -17,7 +20,7 @@ public class AuthController {
     }
 
     @GetMapping("/authorize")
-    public List<Authorities> getAuthorities(@RequestParam("user") String user, @RequestParam("password") String password) {
-        return service.getAuthorities(user, password);
+    public List<Authorities> getAuthorities(@AuthUser @Valid User user) {
+        return service.getAuthorities(user);
     }
 }

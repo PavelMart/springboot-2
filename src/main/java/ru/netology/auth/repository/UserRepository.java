@@ -3,7 +3,6 @@ package ru.netology.auth.repository;
 import org.springframework.stereotype.Repository;
 import ru.netology.auth.model.User;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -17,9 +16,8 @@ public class UserRepository {
         users.add(user);
     }
 
-    public List<Authorities> getUserAuthorities(String user, String password) {
-        final var searchUser = new User(user, password);
-        final var userFromRepo = users.stream().filter(u -> u.equals(searchUser)).findFirst();
+    public List<Authorities> getUserAuthorities(User user) {
+        final var userFromRepo = users.stream().filter(u -> u.equals(user)).findFirst();
         return userFromRepo.map(User::getAuthorities).orElse(null);
     }
 }

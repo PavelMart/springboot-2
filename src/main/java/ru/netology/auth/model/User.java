@@ -1,16 +1,23 @@
 package ru.netology.auth.model;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import ru.netology.auth.repository.Authorities;
 
 import java.util.List;
 import java.util.Objects;
 
 public class User {
+    @NotEmpty
+    @Size(min = 2, max = 20)
     private String user;
+    @NotEmpty
+    @Size(min = 2, max = 20)
     private String password;
     private List<Authorities> authorities;
 
-    public User() {}
+    public User() {
+    }
 
     public User(String user, String password) {
         this.user = user;
