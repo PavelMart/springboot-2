@@ -11,6 +11,7 @@ import ru.netology.auth.service.AuthService;
 
 import java.util.List;
 
+@Validated
 @RestController
 public class AuthController {
     AuthService service;
